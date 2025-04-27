@@ -10,7 +10,7 @@ requests==2.31.0
 beautifulsoup4==4.12.2
 lxml==4.9.3
 pyOpenSSL==23.2.0
-cryptography==41.0.3
+cryptography==44.0.1
 
 # API and web frameworks
 fastapi==0.103.1
