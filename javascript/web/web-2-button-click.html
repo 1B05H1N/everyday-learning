@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Events</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .note {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Button Click Events</h1>
+    
+    <div class="note">
+        <p>This example demonstrates different ways to handle button click events in JavaScript:</p>
+        <ul>
+            <li>Inline onclick attribute</li>
+            <li>Event listeners</li>
+            <li>Event object usage</li>
+            <li>DOM manipulation</li>
+            <li>Random message generation</li>
+            <li>State management (counter)</li>
+        </ul>
+    </div>
+    
+    <!-- Different ways to handle click events -->
+    <button onclick="showAlert()">Click Me (Simple Alert)</button>
+    <button id="fancyButton">Click Me (Fancy Alert)</button>
+    <button id="counterButton">Click Me (Counter: 0)</button>
+
+    <script>
+        /**
+         * Button Click Events Example
+         * 
+         * A demonstration of different ways to handle button click events in JavaScript:
+         * - Inline event handlers
+         * - Event listeners
+         * - Event object properties
+         * - DOM manipulation
+         * - Random message generation
+         * - State management
+         * 
+         * @author Ibrahim
+         * @version 1.0
+         */
+
+        /**
+         * Shows a simple alert message
+         * Demonstrates inline event handling
+         */
+        function showAlert() {
+            alert("You clicked me!");
+        }
+
+        /**
+         * Shows a random encouraging message
+         * Demonstrates event object usage and random message generation
+         * @param {Event} event - The click event object
+         */
+        function showFancyAlert(event) {
+            const button = event.target;
+            const messages = [
+                "Great click!",
+                "You're awesome!",
+                "Keep clicking!",
+                "You've got skills!",
+                "Amazing click!"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+
+        /**
+         * Updates the button text with an incrementing counter
+         * Demonstrates state management and DOM manipulation
+         * @param {Event} event - The click event object
+         */
+        let clickCount = 0;
+        function updateCounter(event) {
+            clickCount++;
+            event.target.textContent = `Click Me (Counter: ${clickCount})`;
+        }
+
+        // Add event listeners
+        document.getElementById('fancyButton').addEventListener('click', showFancyAlert);
+        document.getElementById('counterButton').addEventListener('click', updateCounter);
+    </script>
+</body>
+</html> 

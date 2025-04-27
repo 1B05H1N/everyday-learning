@@ -1,0 +1,93 @@
+# API Gateway Configuration
+
+# Redis configuration for rate limiting and caching
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+
+# Security settings
+security:
+  encryption_key: "YOUR_FERNET_KEY_HERE"  # Generate using: Fernet.generate_key()
+  jwt_secret: "YOUR_JWT_SECRET_HERE"
+  allowed_origins:
+    - "https://example.com"
+    - "https://api.example.com"
+
+# API Endpoints configuration
+endpoints:
+  - path: "/api/users"
+    upstream_url: "http://user-service:8001/users"
+    methods: ["GET", "POST"]
+    auth_required: true
+    rate_limit:
+      max_requests: 100
+      window: 60  # seconds
+    cache_ttl: 300  # seconds
+    transform_request:
+      username:
+        type: "string"
+        required: true
+        pattern: "^[a-zA-Z0-9_]{3,30}$"
+      email:
+        type: "string"
+        required: true
+        pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      age:
+        type: "number"
+        required: false
+        min: 0
+        max: 150
+
+  - path: "/api/auth/login"
+    upstream_url: "http://auth-service:8002/login"
+    methods: ["POST"]
+    auth_required: false
+    rate_limit:
+      max_requests: 5
+      window: 60
+    transform_request:
+      username:
+        type: "string"
+        required: true
+      password:
+        type: "string"
+        required: true
+        pattern: "^.{8,}$"
+
+  - path: "/api/products"
+    upstream_url: "http://product-service:8003/products"
+    methods: ["GET"]
+    auth_required: false
+    rate_limit:
+      max_requests: 1000
+      window: 60
+    cache_ttl: 600
+    transform_response:
+      products:
+        type: "array"
+        required: true
+      total:
+        type: "number"
+        required: true
+        min: 0
+
+  - path: "/api/orders"
+    upstream_url: "http://order-service:8004/orders"
+    methods: ["GET", "POST", "PUT"]
+    auth_required: true
+    rate_limit:
+      max_requests: 50
+      window: 60
+    transform_request:
+      order_id:
+        type: "string"
+        required: true
+        pattern: "^ORD-[0-9]{6}$"
+      items:
+        type: "array"
+        required: true
+      total_amount:
+        type: "number"
+        required: true
+        min: 0 

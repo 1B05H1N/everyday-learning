@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Hello</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        .note {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello User (Check Console)</h1>
+    <p>Press F12 to open developer tools and check the console!</p>
+    <div class="note">
+        <p>This example demonstrates:</p>
+        <ul>
+            <li>Basic console output methods</li>
+            <li>Template literals</li>
+            <li>Conditional (ternary) operators</li>
+            <li>Date object usage</li>
+        </ul>
+    </div>
+
+    <script>
+        /**
+         * Console Hello Example
+         * 
+         * A simple demonstration of JavaScript console methods and basic concepts:
+         * - Variables and constants
+         * - Template literals
+         * - Date object
+         * - Conditional operators
+         * - Console methods (log, info, warn, error)
+         * 
+         * @author Ibrahim
+         * @version 1.0
+         */
+
+        // Variables and console.log example
+        const username = "User";
+        const timeOfDay = new Date().getHours() < 12 ? "morning" : 
+                         new Date().getHours() < 18 ? "afternoon" : "evening";
+        
+        // Print to console
+        console.log("Hello World!");
+        console.log(`Good ${timeOfDay}, ${username}!`);
+        console.log("Welcome to JavaScript!");
+        
+        // Different console methods
+        console.info("This is an info message");
+        console.warn("This is a warning message");
+        console.error("This is an error message");
+    </script>
+</body>
+</html> 

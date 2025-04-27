@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .movie-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .movie-item {
+            background-color: #f5f5f5;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .add-movie {
+            margin-top: 20px;
+        }
+        input {
+            padding: 8px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .note {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Favorite Movies</h1>
+    
+    <div class="note">
+        <p>This example demonstrates:</p>
+        <ul>
+            <li>DOM manipulation</li>
+            <li>Array methods</li>
+            <li>Event handling</li>
+            <li>Dynamic content creation</li>
+            <li>User input processing</li>
+            <li>Keyboard event handling</li>
+        </ul>
+    </div>
+
+    <ul id="movieList" class="movie-list">
+        <!-- Movies will be added here -->
+    </ul>
+
+    <div class="add-movie">
+        <input type="text" id="movieInput" placeholder="Enter a movie title">
+        <button onclick="addMovie()">Add Movie</button>
+    </div>
+
+    <script>
+        /**
+         * Movie List Manager
+         * 
+         * A dynamic movie list manager that demonstrates:
+         * - Array manipulation
+         * - DOM manipulation
+         * - Event handling
+         * - User input processing
+         * - Dynamic content creation
+         * 
+         * Features:
+         * - Display list of movies
+         * - Add new movies
+         * - Remove existing movies
+         * - Keyboard support (Enter key)
+         * - Persistent array storage
+         * 
+         * @author Ibrahim
+         * @version 1.0
+         */
+
+        // Initial array of favorite movies
+        const movies = [
+            "The Shawshank Redemption",
+            "The Godfather",
+            "The Dark Knight",
+            "Pulp Fiction",
+            "Forrest Gump"
+        ];
+
+        /**
+         * Displays all movies in the list
+         * Creates and updates the DOM elements for each movie
+         */
+        function displayMovies() {
+            const movieList = document.getElementById('movieList');
+            movieList.innerHTML = ''; // Clear current list
+
+            // Loop through movies array and create list items
+            movies.forEach((movie, index) => {
+                const li = document.createElement('li');
+                li.className = 'movie-item';
+                li.innerHTML = `
+                    <span>${index + 1}. ${movie}</span>
+                    <button onclick="removeMovie(${index})">Remove</button>
+                `;
+                movieList.appendChild(li);
+            });
+        }
+
+        /**
+         * Adds a new movie to the list
+         * Handles input validation and updates the display
+         */
+        function addMovie() {
+            const movieInput = document.getElementById('movieInput');
+            const newMovie = movieInput.value.trim();
+
+            if (newMovie !== '') {
+                movies.push(newMovie);
+                movieInput.value = ''; // Clear input
+                displayMovies();
+            }
+        }
+
+        /**
+         * Removes a movie from the list
+         * @param {number} index - The index of the movie to remove
+         */
+        function removeMovie(index) {
+            movies.splice(index, 1); // Remove movie from array
+            displayMovies();
+        }
+
+        // Initial display of movies
+        displayMovies();
+
+        // Add enter key support for input
+        document.getElementById('movieInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addMovie();
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.1s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #randomButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #resetButton {
+            background-color: #f44336;
+            color: white;
+        }
+        .color-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+        .note {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Changer</h1>
+    
+    <div class="note">
+        <p>This example demonstrates:</p>
+        <ul>
+            <li>DOM manipulation</li>
+            <li>Event handling</li>
+            <li>CSS transitions</li>
+            <li>Random color generation</li>
+            <li>Button styling and interactions</li>
+            <li>State management</li>
+        </ul>
+    </div>
+    
+    <div id="colorBox">
+        Click a button to change my color!
+    </div>
+
+    <div class="button-group">
+        <button class="color-button" style="background-color: #ff0000;" onclick="changeColor('#ff0000')"></button>
+        <button class="color-button" style="background-color: #00ff00;" onclick="changeColor('#00ff00')"></button>
+        <button class="color-button" style="background-color: #0000ff;" onclick="changeColor('#0000ff')"></button>
+        <button class="color-button" style="background-color: #ffff00;" onclick="changeColor('#ffff00')"></button>
+    </div>
+
+    <div class="button-group">
+        <button id="randomButton" onclick="changeToRandomColor()">Random Color</button>
+        <button id="resetButton" onclick="resetColor()">Reset</button>
+    </div>
+
+    <script>
+        /**
+         * Color Changer Application
+         * 
+         * An interactive color changing application that demonstrates:
+         * - DOM manipulation
+         * - Event handling
+         * - CSS transitions
+         * - Random color generation
+         * - Button interactions
+         * - State management
+         * 
+         * Features:
+         * - Predefined color buttons
+         * - Random color generation
+         * - Color reset functionality
+         * - Smooth color transitions
+         * - Interactive button feedback
+         * 
+         * @author Ibrahim
+         * @version 1.0
+         */
+
+        const colorBox = document.getElementById('colorBox');
+        const defaultColor = '#ffffff';
+        
+        /**
+         * Changes the color of the box and updates its text
+         * @param {string} color - The color to change to (hex format)
+         */
+        function changeColor(color) {
+            colorBox.style.backgroundColor = color;
+            colorBox.textContent = `Current Color: ${color}`;
+        }
+        
+        /**
+         * Generates and applies a random color
+         * Uses Math.random() to create a random hex color
+         */
+        function changeToRandomColor() {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            changeColor(randomColor);
+        }
+        
+        /**
+         * Resets the box to its default color and text
+         */
+        function resetColor() {
+            changeColor(defaultColor);
+            colorBox.textContent = 'Click a button to change my color!';
+        }
+        
+        // Initialize with default color
+        resetColor();
+    </script>
+</body>
+</html> 
