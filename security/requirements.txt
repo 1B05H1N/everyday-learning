@@ -9,7 +9,7 @@ typing-extensions==4.9.0
 requests==2.32.4
 beautifulsoup4==4.12.2
 lxml==4.9.3
-pyOpenSSL==23.2.0
+pyOpenSSL==26.0.0
 cryptography==44.0.1
 
 # API and web frameworks
